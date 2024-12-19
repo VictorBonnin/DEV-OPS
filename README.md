@@ -31,7 +31,7 @@ Pour démarrer le projet, il faut avoir les fichiers suivants :
 - AWSCLIV2.msi  
 
 
-Il faut bien veiller à ce que terraform fonctionne bien.
+Il faut veiller à ce que terraform fonctionne bien.
 Penser à ajouter le chemin de 'terraform.exe' à 'PATH' dans les variables d'environnement (système).
 
 Ensuite, il faut se rendre dans un invit de commande dans le dossier 'mlops-infra'.
