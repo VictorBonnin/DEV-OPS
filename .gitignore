@@ -1,0 +1,12 @@
+cmd.txt
+terraform_1.10.1_windows_amd64.zip
+terraform_1.10.1_windows_386.zip
+projet.zip
+LICENSES.txt
+secure/testcleAMI.pem
+projet_ml_old/
+mlops_infra/.terraform
+mlops_infra/modules
+mlops_infra/.terraform.lock.hcl
+mlops_infra/terraform.tfstate
+mlops_infra/terraform.tfstate.backup
