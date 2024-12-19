@@ -23,7 +23,7 @@ Pour démarrer le projet, il faut avoir les fichiers suivants :
     - requirements.txt  
     - test.py
 
-- secure
+- secure (créer le dossier)
     - un_fichier_qui_contient_votre_clé_AMI.pem  
 
 - README.md  
@@ -72,7 +72,7 @@ Ici, nous avons appelé la clé "testcleAMI".
 
 Vous aurez donc normalement :
 - secure
-    - <nom_AMI.pem>.pem
+    - <nom_AMI.pem>
 
 Maintenant que vous disposez de cette clé, si jamais vous l'avez nommé différement de la mienne, il vous faudra remplacer le nom de la notre par le votre dans le fichier main.tf, autour de la ligne 60.
 
@@ -112,7 +112,7 @@ Pour se faire, toujours dans notre ubuntu, il faut exectuer les commandes suivan
 ```sudo systemctl start docker```  
 ```sudo systemctl enable docker```  
 ```docker --version```  
-Ces commandes vont nous permettre d'installer docker sur notre instance EC2.
+Ces commandes vont nous permettre d'installer docker sur notre instance EC2, et nous donner les droits pour executer les commandes suivantes.
 
 Une fois que tout cela fonctionne, il faut créer une application sur l'instance.
 
@@ -143,15 +143,21 @@ Ensuite, on peut à nouveau rentrer dans notre instance pour vérifier que le do
 Vous devriez donc avoir ce rendu dans l'instance :
 ![alt text](img/dossier_instance.png)
 
-Une fois dans notre instance, on va pouvoir démarrer notre projet de machine learning, en se rendant bien dans le dossier qui contient le docker-compose :  
+Une fois dans notre instance, on va pouvoir démarrer notre projet de machine learning, en se rendant dans le dossier qui contient le docker-compose :  
 ```cd projet-ml```  
 ```docker-compose up --build```
 
-Si vous avez déjà lancé un docker-compose dans l'instance, n'oubliez pas de redémarrer les docker-compose et faisant les requêtes suivantes :  
+Si vous avez déjà lancé un docker-compose dans l'instance, n'oubliez pas de redémarrer les docker-compose en faisant les requêtes suivantes :  
 ```docker-compose down```  
 ```docker-compose build```
 
-Maintenant, le serveur flask, l'API ainsi que tous les autres outils devraient fonctionner. Pour tester cela, on peut ouvrir un autre invit de commande pour aller voir.
+Maintenant, le serveur flask, l'API ainsi que tous les autres outils devraient fonctionner. 
+On peut donc ainsi regarder les logs des commandes que nous allons executer.  
+Par exemple, sans rien faire, nous avons l'API qui va se mettre à jour toutes les 15 secondes, via Prometheus. Egalement, nous allons plus tard lancer des requêtes pour afficher nos données, et nous pourrons voir le type de requête que nous feront dans les logs :
+![alt text](img/curl_logs.png)  
+Ici, nous avons lancé un curl pour sortir les données.
+
+Pour tester cela, on peut ouvrir un autre invit de commande pour aller voir.
 
 Un fois rendu dans notre instance sur un autre CMD, on peut simplement executer la requête suivante pour être sur que tous nos containers fonctionnent correctement :
 ```docker ps```
