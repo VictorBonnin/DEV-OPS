@@ -84,7 +84,11 @@ Si jamais vous avez déjà lancé une application, il vous fadura la détruire p
 
 Il faudra, pendant l'execution, accepter de créer l'instance en écrivant "yes" quand cela est demandé dans le terminal.
 
+![alt text](img/terraform_apply.png)
+
 #### -Démarrer l'instance
+
+Vous pouvez dès maintenant aller récupérer l'IP de l'instance en allant sur AWS --> EC2 --> Instances (en cours d'exécution) --> IP élastique.
 
 Maintenant, pour lancer l'instance, il faut lancer cette commande : 
 ```ssh -i <chemin_de_la_cle_AMI> ubuntu@<ip_de_l_instance_>```
@@ -124,6 +128,8 @@ Si vous possédez bien ce dossier, il faudra ensuite exectuer la commande suivan
 ```scp -i <chemin_de_la_cle_AMI> -r projet_ml ubuntu@<ip_de_l_instance_>:/home/ubuntu/```
 Cette commande va permettre de copier le dossier directement dans l'instance.
 
+![alt text](img/cmd_instance_push.png)
+
 Ensuite, on peut à nouveau rentrer dans notre instance pour vérifier que le dossier et ce qu'il contient à bien été copié dedans avec la commande :
 ```ssh -i <chemin_de_la_cle_AMI> ubuntu@<ip_de_l_instance_>```
 
@@ -161,6 +167,7 @@ Vous devriez avoir un résultat de ce type :
 
 On peut aussi aller voir si prometheus s'est bien lancé :
 ```http://IP_de_votre_instance:9090```
+![alt text](img/prometheus.png)
 
 Et enfin, on va aussi pouvoir aller sur grafana, pour visualiser nos données :
 ```http://IP_de_votre_instance:3000```
@@ -168,6 +175,8 @@ Et enfin, on va aussi pouvoir aller sur grafana, pour visualiser nos données :
 Une fois sur grafana, vous allez devoir rentrer un login et un mot de passe :
 login : admin
 mdp : admin
+
+Grafana vous demandera ensuite de définir un nouveau mot de passe, mais nous pouvons passer cette étape en cliquant sur 'skip'.
 
 Une fois dedans, il va falloir connecter notre API à Grafana. Pour se faire, il faut aller dans "Connections" --> "Add new connection", et installer JSON API.
 Ensuite, il faut aller dans "Data Source", juste en dessous, et en ajouter une nouvelle et selectionne JSON API.
@@ -184,4 +193,10 @@ Cependant, l'affichage n'étant pas très joli, nous pouvons l'améliorer en all
 ![alt text](img/Grafana_Tableau.png) 
 
 
+#### - Axes d'amélioration
+Pour notre projet, nous avons détecté quelques axes d'améliorations que nous pourrons réaliser par la suite :
+- Automatiser la récupération de l'adresse IP élastique pour encore plus automatiser le projet.
+- Automatiser le lancement des requêtes lors de l'arrivée dans l'instance.
+
 ### NE PAS OUBLIER D'ETEINDRE VOS INSTANCES/IP ELASTIQUES A LA FIN
+### OU LANCEZ UN TERRAFORM DESTROY POUR PLUS DE SIMPLICITE
